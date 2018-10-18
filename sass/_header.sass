@@ -1,7 +1,6 @@
 .header
   background-color: $color-grey-dark-1
   grid-column: full-start / col-end 6
-  grid-row: 1 / 2
   background-image: linear-gradient(rgba($color-secondary, 0.93), rgba($color-secondary,.93)),url(../img/hero.jpeg)
   background-size: cover
   background-position: center
@@ -10,10 +9,17 @@
 
 
   display: grid
-  grid-template-rows: 1fr min-content 6rem  1fr
-  grid-template-columns: max-content
+  grid-template-rows: 1fr min-content minmax(6rem, max-content)  1fr
+  grid-template-columns: minmax(min-content, max-content)
   grid-row-gap: 1.5rem
   justify-content: center
+
+  @media only screen and (max-width: $bp-medium)
+    grid-column: 1 / -1
+
+  @media only screen and (max-width: $bp-small)
+    padding: 5rem
+
 
   &__logo
     height: 3rem
@@ -44,7 +50,9 @@
     grid-template-columns: repeat(4,1fr)
     grid-column-gap: 3rem
     justify-items: center
+    align-items: center
 
     img
-      height: 2.5em
+      max-height: 2.5em
+      max-width: 100%
       filter: brightness(70%)
